@@ -5,7 +5,7 @@ import logging
 class TitleStatusPlugin(octoprint.plugin.AssetPlugin):
 
 	def initialize(self):
-		self._logger.setLevel(logging.DEBUG)
+		#self._logger.setLevel(logging.DEBUG)
 		
 	def get_assets(self):
 		return dict(

@@ -4,7 +4,7 @@ $(function() {
 
 		self.onAllBound = function () {
 			self.default_title =  document.title;
-			console.log(self.default_title);
+			//console.log(self.default_title);
 		}
 		
 		self.createTitle = function(text){
@@ -18,7 +18,7 @@ $(function() {
 		}
 				
 		self.onEventPrinterStateChanged = function(payload) {
-			console.log(payload.state_id);
+			//console.log(payload.state_id);
 			
 			switch (payload.state_id) {
 				case "OFFLINE": 
