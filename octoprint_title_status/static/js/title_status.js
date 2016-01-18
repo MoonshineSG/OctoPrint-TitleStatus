@@ -1,10 +1,20 @@
 $(function() {
 	function TitleStatusViewModel(viewModels) {
 		var self = this;
-
+		
 		self.onAllBound = function () {
-			self.default_title =  document.title;
-			//console.log(self.default_title);
+			self.default_title = document.title;
+		}
+		
+		self.onDataUpdaterPluginMessage = function (plugin, data) {
+			if (plugin != "title_status") {
+				return;
+			}
+			self._update(data);
+		} 
+		
+		self.onEventPrinterStateChanged = function(payload) {
+			self._update(payload.state_id);
 		}
 		
 		self.createTitle = function(text){
@@ -16,11 +26,9 @@ $(function() {
 				document.title = text;
 			}
 		}
-				
-		self.onEventPrinterStateChanged = function(payload) {
-			//console.log(payload.state_id);
-			
-			switch (payload.state_id) {
+		
+		self._update = function (status) {
+			switch (status) {
 				case "OFFLINE": 
 					self.createTitle("* ");
 					break;
@@ -45,8 +53,8 @@ $(function() {
 					self.createTitle("? ")
 					break;
 			}
-		};
-		
+		}
 	}
 	ADDITIONAL_VIEWMODELS.push([TitleStatusViewModel, [], []]);
 });
+
