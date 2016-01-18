@@ -17,7 +17,7 @@ class TitleStatusPlugin(octoprint.plugin.AssetPlugin):
 
 	def get_update_information(self):
 		return dict(
-			active_filters=dict(
+			title_status=dict(
 				displayName="Title Status",
 				displayVersion=self._plugin_version,
 
