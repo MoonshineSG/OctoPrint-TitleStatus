@@ -10,7 +10,7 @@ $(function() {
 		self.createTitle = function(text){
 			if (text == "") {
 				document.title = self.default_title;
-			} else if (text.endsWith() == " ") {
+			} else if (text.endsWith(" ")) {
 				document.title = text + self.default_title;
 			} else { 
 				document.title = text;
@@ -34,7 +34,7 @@ $(function() {
 					self.createTitle("△ ")
 					break;
 				case "PAUSED":
-					self.createTitle("Paused ...")
+					self.createTitle("Paused...")
 					break;
 				case "ERROR":
 				case "CLOSED_WITH_ERROR":
