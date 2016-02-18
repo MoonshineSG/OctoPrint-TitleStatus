@@ -14,7 +14,7 @@ class TitleStatusPlugin(octoprint.plugin.AssetPlugin, octoprint.plugin.EventHand
 	def get_state_id(self):
 		try: 
 			return self._printer.get_state_id()
-		except:
+		except AttributeError:
 			state = self._printer._state
 			#see /octoprint/util/comm.py for state values
 			if state == None or state == 0:
