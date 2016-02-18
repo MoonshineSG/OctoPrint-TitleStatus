@@ -49,7 +49,6 @@ $(function() {
 					self.createTitle("ERROR !! ")
 					break;
 				case "UNKNOWN":
-				case "NONE":
 					self.createTitle("? ")
 					break;
 			}
