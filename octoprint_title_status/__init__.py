@@ -11,10 +11,23 @@ class TitleStatusPlugin(octoprint.plugin.AssetPlugin, octoprint.plugin.EventHand
 				js=["js/title_status.js"]
 			)
 
+	def get_state_id(self):
+		comm = self._printer._comm
+		state = comm._state
+		possible_states = filter(lambda x: x.startswith("STATE_"), comm.__class__.__dict__.keys())
+		for possible_state in possible_states:
+			if getattr(self, possible_state) == state:
+				return possible_state[len("STATE_"):]
+
+		return "UNKNOWN"
+	
 	def on_event(self, event, payload):
 		if event == Events.CLIENT_OPENED:
-			self._plugin_manager.send_plugin_message(self._identifier, self._printer.get_state_id())
-			
+			try: 
+				self._plugin_manager.send_plugin_message(self._identifier, self._printer.get_state_id())
+			except:
+				self._plugin_manager.send_plugin_message(self._identifier, self.get_state_id())
+
 	def get_version(self):
 		return self._plugin_version
 
