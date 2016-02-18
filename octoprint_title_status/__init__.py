@@ -10,17 +10,29 @@ class TitleStatusPlugin(octoprint.plugin.AssetPlugin, octoprint.plugin.EventHand
 		return dict(
 				js=["js/title_status.js"]
 			)
-
+			
 	def get_state_id(self):
-		comm = self._printer._comm
-		state = comm._state
-		possible_states = filter(lambda x: x.startswith("STATE_"), comm.__class__.__dict__.keys())
-		for possible_state in possible_states:
-			if getattr(self, possible_state) == state:
-				return possible_state[len("STATE_"):]
-
-		return "UNKNOWN"
-	
+		state = self._printer._state
+		if state == None or state == 0:
+			return "OFFLINE"
+		if state == 4:
+			return "CONNECTING"
+		if state == 5:
+			return "OPERATIONAL"
+		if state == 6:
+			return "PRINTING"
+		if state == 7:
+			return "PAUSED"
+		if state == 8:
+			return "CLOSED"
+		if state == 9:
+			return "ERROR"
+		if state == 10:
+			return "CLOSED_WITH_ERROR"
+		if state in [1, 2, 3, 11]:
+			return "OTHER"
+		return "ÜNKNOWN"
+		
 	def on_event(self, event, payload):
 		if event == Events.CLIENT_OPENED:
 			try: 
