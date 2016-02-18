@@ -2,6 +2,13 @@
 
 Show printers status in window title
 
+    OFFLINE - *
+    CONNECTING - Connecting..
+    PRINTING - △
+    PAUSED - Paused...
+    ERROR/CLOSED_WITH_ERROR - ERROR !!
+    UNKNOWN -?
+
 
 ## Setup
 
