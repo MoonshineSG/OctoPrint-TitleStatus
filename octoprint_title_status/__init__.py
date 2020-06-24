@@ -1,4 +1,4 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 import octoprint.plugin
 import logging
 
@@ -66,6 +66,7 @@ __plugin_name__ = "Title Status"
 def __plugin_load__():
 	global __plugin_implementation__
 	__plugin_implementation__ = TitleStatusPlugin()
+	__plugin_pythoncompat__ = ">=2.7,<4"
 
 	global __plugin_hooks__
 	__plugin_hooks__ = {
